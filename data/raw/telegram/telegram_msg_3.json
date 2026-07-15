@@ -1,0 +1,23 @@
+{
+  "update_id": 123456791,
+  "message": {
+    "message_id": 3,
+    "from": {
+      "id": 765432109,
+      "is_bot": false,
+      "first_name": "Carol",
+      "last_name": "Williams",
+      "username": "carolw",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 765432109,
+      "first_name": "Carol",
+      "last_name": "Williams",
+      "username": "carolw",
+      "type": "private"
+    },
+    "date": 1689494400,
+    "text": "Sony WH-1000XM5 Wireless Noise Canceling Headphones - Black. Used for 3 months. Perfect condition. $280 OBO. Comes with case and cables."
+  }
+}

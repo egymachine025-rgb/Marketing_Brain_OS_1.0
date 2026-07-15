@@ -1,0 +1,30 @@
+{
+  "product_id": "tg-123456792",
+  "source": {
+    "platform": "telegram",
+    "message_id": "4",
+    "update_id": "123456792"
+  },
+  "listing": {
+    "title": "Nintendo Switch OLED Model - White",
+    "description": "Nintendo Switch OLED Model - White. Includes Zelda: Tears of the Kingdom, Pro Controller, and 128GB microSD. $320 firm. Local pickup only.",
+    "price": {
+      "currency": "USD",
+      "amount": 320.0
+    },
+    "condition": "Unknown",
+    "category": "gaming",
+    "brand": "nintendo"
+  },
+  "seller": {
+    "id": "654321098",
+    "username": "davidb",
+    "first_name": "David",
+    "last_name": "Brown"
+  },
+  "metadata": {
+    "acquired_at": 1689580800,
+    "parser_version": "1.0.0"
+  },
+  "status": "active"
+}

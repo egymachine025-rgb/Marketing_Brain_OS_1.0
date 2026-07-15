@@ -1,0 +1,23 @@
+{
+  "update_id": 123456792,
+  "message": {
+    "message_id": 4,
+    "from": {
+      "id": 654321098,
+      "is_bot": false,
+      "first_name": "David",
+      "last_name": "Brown",
+      "username": "davidb",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 654321098,
+      "first_name": "David",
+      "last_name": "Brown",
+      "username": "davidb",
+      "type": "private"
+    },
+    "date": 1689580800,
+    "text": "Nintendo Switch OLED Model - White. Includes Zelda: Tears of the Kingdom, Pro Controller, and 128GB microSD. $320 firm. Local pickup only."
+  }
+}

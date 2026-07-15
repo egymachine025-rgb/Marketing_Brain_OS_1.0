@@ -1,0 +1,28 @@
+{
+  "id": "e00a969b-8e10-4820-91be-710892f3922b",
+  "created_at": "2026-07-14T10:54:31.000000",
+  "updated_at": "2026-07-14T10:54:31.000000",
+  "fingerprint": "f626db72f778641a995e69e71ec646fb269c362db66bc6200cae74ad08b3aef9",
+  "name": "Check out this brand new Sony headphones!",
+  "brand": "Sony",
+  "category": "Electronics",
+  "description": "Check out this brand new Sony headphones!\nOnly $299.99 on our store.\nColor: Black and Silver.",
+  "price": 299.99,
+  "currency": "USD",
+  "colors": [
+    "black",
+    "silver"
+  ],
+  "features": [
+    "wireless",
+    "noise-canceling"
+  ],
+  "images": [
+    "https://cdn.store/headphones_1.jpg"
+  ],
+  "videos": [],
+  "seller": "SuperStore Inc",
+  "source": "Telegram",
+  "telegram_message_id": "99823",
+  "telegram_channel": "deals_tech_channel"
+}

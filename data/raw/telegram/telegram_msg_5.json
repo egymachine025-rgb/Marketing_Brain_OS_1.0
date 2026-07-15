@@ -1,0 +1,23 @@
+{
+  "update_id": 123456793,
+  "message": {
+    "message_id": 5,
+    "from": {
+      "id": 543210987,
+      "is_bot": false,
+      "first_name": "Eve",
+      "last_name": "Davis",
+      "username": "evedavis",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 543210987,
+      "first_name": "Eve",
+      "last_name": "Davis",
+      "username": "evedavis",
+      "type": "private"
+    },
+    "date": 1689667200,
+    "text": "Canon EOS R6 Mark II Mirrorless Camera Body. Shutter count 4,200. Includes 2 batteries, charger, and strap. $2100. Excellent condition, no sensor dust."
+  }
+}

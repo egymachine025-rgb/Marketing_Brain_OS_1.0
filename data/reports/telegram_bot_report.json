@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-07-15T01:31:24.951834+00:00",
+  "stats": {
+    "messages_received": 48,
+    "products_created": 0,
+    "duplicates_found": 0,
+    "errors": 0,
+    "started_at": "2026-07-15T01:25:49.645269+00:00"
+  }
+}

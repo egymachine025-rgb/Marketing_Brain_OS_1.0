@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Brain OS — Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        waBg: '#f8fafc',
+                        waHeader: '#0f172a',
+                        waTealLight: '#0d9488',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-waBg min-h-screen text-slate-800 font-sans flex flex-col" 
+      x-data="{ 
+          mobileMenuOpen: false, 
+          currentTab: 'dashboard',
+          sourcesList: [],
+          loadingSources: false,
+          async fetchSources() {
+              this.loadingSources = true;
+              try {
+                  let response = await fetch('/api/telegram-sources');
+                  this.sourcesList = await response.json();
+              } catch (error) {
+                  console.error('Failed to fetch sources:', error);
+              } finally {
+                  this.loadingSources = false;
+              }
+          }
+      }"
+      x-init="fetchSources()">
+
+    <!-- ── HEADER ── -->
+    <header class="bg-waHeader text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-waTealLight p-2 rounded-lg">
+                    <i class="fa-solid fa-brain text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight">Marketing Brain OS</h1>
+                    <p class="text-xs text-slate-400">Telegram Acquisition & Intelligence</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex space-x-2">
+                <button @click="currentTab = 'dashboard'" 
+                        :class="currentTab === 'dashboard' ? 'bg-waTealLight text-white' : 'text-slate-300 hover:bg-slate-800'"
+                        class="px-4 py-2 rounded-lg text-sm font-semibold transition">
+                    <i class="fa-solid fa-chart-line mr-1.5"></i> Dashboard
+                </button>
+                <button @click="currentTab = 'sources'; fetchSources()" 
+                        :class="currentTab === 'sources' ? 'bg-waTealLight text-white' : 'text-slate-300 hover:bg-slate-800'"
+                        class="px-4 py-2 rounded-lg text-sm font-semibold transition">
+                    <i class="fa-solid fa-circle-nodes mr-1.5"></i> Sources Panel
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white hover:text-slate-300">
+                <i class="fa-solid text-xl" :class="mobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Dropdown -->
+        <div x-show="mobileMenuOpen" x-transition class="md:hidden bg-slate-800 border-t border-slate-700 px-4 py-2 space-y-1">
+            <button @click="currentTab = 'dashboard'; mobileMenuOpen = false" 
+                    class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-700 hover:text-white">
+                Dashboard
+            </button>
+            <button @click="currentTab = 'sources'; fetchSources(); mobileMenuOpen = false" 
+                    class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-700 hover:text-white">
+                Sources Panel
+            </button>
+        </div>
+    </header>
+
+    <!-- ── MAIN CONTENT CONTAINER ── -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+
+        <!-- 🟦 TAB 1: GENERAL DASHBOARD (Simple Placeholder) -->
+        <div x-show="currentTab === 'dashboard'" class="space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-2">Welcome to Marketing Brain OS</h2>
+                <p class="text-slate-600 mb-4">You can monitor system operations, run the integration pipeline, or manage your raw ingestion sources.</p>
+                <button @click="currentTab = 'sources'; fetchSources()" class="bg-waTealLight text-white px-4 py-2 rounded-lg text-sm font-bold shadow hover:bg-teal-700 transition">
+                    Go to Sources Panel <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 🟩 TAB 2: SOURCES PANEL (Real-time Dynamic Data) 🟩 -->
+        <div x-show="currentTab === 'sources'" class="space-y-6" style="display: none;">
+            
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden">
+                <!-- Panel Header -->
+                <div class="p-5 border-b border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-nodes text-waTealLight"></i> Telegram Sources Manager
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Dynamically monitoring channels from local acquisition directory.</p>
+                    </div>
+                    <!-- Controls -->
+                    <button @click="fetchSources()" 
+                            :disabled="loadingSources"
+                            class="inline-flex items-center justify-center gap-2 bg-waHeader hover:bg-slate-800 text-white disabled:opacity-50 px-4 py-2 rounded-lg text-xs font-bold transition shadow-sm">
+                        <i class="fa-solid fa-rotate" :class="loadingSources ? 'animate-spin' : ''"></i>
+                        <span>Refresh Sources</span>
+                    </button>
+                </div>
+
+                <!-- Loading State -->
+                <div x-show="loadingSources" class="text-center py-16">
+                    <i class="fa-solid fa-circle-notch text-3xl text-waTealLight animate-spin mb-3"></i>
+                    <p class="text-sm text-slate-500 font-medium animate-pulse">Scanning system files & counting products...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div x-show="!loadingSources && sourcesList.length === 0" class="text-center py-16 px-4">
+                    <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-folder-open text-2xl text-slate-400"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-slate-800">No Telegram Sources Found</h3>
+                    <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">Make sure you have active folders inside <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-pink-600">data/raw/telegram/</code>.</p>
+                </div>
+
+                <!-- Actual Data Table -->
+                <div x-show="!loadingSources && sourcesList.length > 0" class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-xs font-semibold uppercase tracking-wider border-b border-slate-100">
+                                <th class="py-3.5 px-5">@Channel</th>
+                                <th class="py-3.5 px-5 text-center">Messages</th>
+                                <th class="py-3.5 px-5 text-center">Products</th>
+                                <th class="py-3.5 px-5">Status</th>
+                                <th class="py-3.5 px-5 text-right">Last Sync</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm">
+                            <template x-for="source in sourcesList" :key="source.channel_name">
+                                <tr class="hover:bg-slate-50/50 transition">
+                                    <!-- Channel Name -->
+                                    <td class="py-4 px-5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div class="w-8 h-8 rounded-full bg-teal-50 text-waTealLight flex items-center justify-center font-bold text-xs shadow-inner">
+                                                TG
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-slate-800 block hover:text-waTealLight transition cursor-pointer" x-text="source.channel_name"></span>
+                                                <span class="text-[10px] text-slate-400 font-mono">Type: Public Channel</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <!-- Raw Messages Count -->
+                                    <td class="py-4 px-5 text-center">
+                                        <span class="font-mono font-semibold text-slate-700 bg-slate-100/80 px-2.5 py-1 rounded text-xs" x-text="source.messages"></span>
+                                    </td>
+                                    
+                                    <!-- Extracted Products -->
+                                    <td class="py-4 px-5 text-center">
+                                        <span class="font-mono font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded text-xs" x-text="source.products"></span>
+                                    </td>
+
+                                    <!-- Status Badges -->
+                                    <td class="py-4 px-5">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm"
+                                              :class="source.status === 'Active' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'">
+                                            <span class="w-1.5 h-1.5 rounded-full" :class="source.status === 'Active' ? 'bg-emerald-500' : 'bg-amber-500'"></span>
+                                            <span x-text="source.status"></span>
+                                        </span>
+                                    </td>
+                                    
+                                    <!-- Last Scan / Sync Time -->
+                                    <td class="py-4 px-5 text-right">
+                                        <span class="text-xs text-slate-500 font-mono" x-text="source.last_scan"></span>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Table Footer Stats -->
+                <div x-show="!loadingSources && sourcesList.length > 0" class="p-4 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+                    <span>Total Active Sources: <strong class="text-slate-700 font-bold" x-text="sourcesList.length"></strong></span>
+                    <span>All values fetched live.</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs border-t border-slate-800">
+        <p>© 2026 Marketing Brain OS. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

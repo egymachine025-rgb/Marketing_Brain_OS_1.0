@@ -1,0 +1,27 @@
+{
+  "product_id": "tg-12681",
+  "source": {
+    "platform": "telegram",
+    "message_id": "12681",
+    "update_id": "12681"
+  },
+  "listing": {
+    "title": "https://www",
+    "description": "https://www.facebook.com/share/r/17JhCdq61S/?mibextid=wwXIfr",
+    "price": null,
+    "condition": "Unknown",
+    "category": "uncategorized",
+    "brand": null
+  },
+  "seller": {
+    "id": "",
+    "username": "",
+    "first_name": "",
+    "last_name": ""
+  },
+  "metadata": {
+    "acquired_at": "2026-05-13T14:15:31+00:00",
+    "parser_version": "1.0.0"
+  },
+  "status": "active"
+}

@@ -1,0 +1,23 @@
+{
+  "update_id": 123456790,
+  "message": {
+    "message_id": 2,
+    "from": {
+      "id": 876543210,
+      "is_bot": false,
+      "first_name": "Bob",
+      "last_name": "Johnson",
+      "username": "bobjohnson",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 876543210,
+      "first_name": "Bob",
+      "last_name": "Johnson",
+      "username": "bobjohnson",
+      "type": "private"
+    },
+    "date": 1689408000,
+    "text": "Selling MacBook Air M2 13-inch, Midnight, 16GB RAM, 512GB SSD. Purchased Jan 2024. Warranty until Jan 2026. Asking $1100. Minor wear on corner."
+  }
+}

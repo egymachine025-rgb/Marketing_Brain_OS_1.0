@@ -1,0 +1,362 @@
+[
+  {
+    "update_id": 100001,
+    "message": {
+      "message_id": 1,
+      "from": {
+        "id": 111111,
+        "is_bot": false,
+        "first_name": "Aya",
+        "username": "aya_shop"
+      },
+      "chat": {
+        "id": 111111,
+        "type": "private"
+      },
+      "date": 1689321600,
+      "text": "iPhone 15 Pro Max 256GB Natural Titanium. Like New. $950. Battery 98%. Box + charger included."
+    }
+  },
+  {
+    "update_id": 100002,
+    "message": {
+      "message_id": 2,
+      "from": {
+        "id": 222222,
+        "is_bot": false,
+        "first_name": "Mona",
+        "username": "mona_tech"
+      },
+      "chat": {
+        "id": 222222,
+        "type": "private"
+      },
+      "date": 1689325200,
+      "text": "Selling MacBook Air M2 13-inch Midnight 16GB RAM 512GB SSD. $1100. Warranty until 2026."
+    }
+  },
+  {
+    "update_id": 100003,
+    "message": {
+      "message_id": 3,
+      "from": {
+        "id": 333333,
+        "is_bot": false,
+        "first_name": "Sara",
+        "username": "sara_audio"
+      },
+      "chat": {
+        "id": 333333,
+        "type": "private"
+      },
+      "date": 1689328800,
+      "text": "Sony WH-1000XM5 Wireless Noise Canceling Headphones Black. $280 OBO. 3 months use."
+    }
+  },
+  {
+    "update_id": 100004,
+    "message": {
+      "message_id": 4,
+      "from": {
+        "id": 444444,
+        "is_bot": false,
+        "first_name": "Nour",
+        "username": "nour_games"
+      },
+      "chat": {
+        "id": 444444,
+        "type": "private"
+      },
+      "date": 1689332400,
+      "text": "Nintendo Switch OLED Model White. $320 firm. Includes Zelda TOTK + Pro Controller."
+    }
+  },
+  {
+    "update_id": 100005,
+    "message": {
+      "message_id": 5,
+      "from": {
+        "id": 555555,
+        "is_bot": false,
+        "first_name": "Laila",
+        "username": "laila_photo"
+      },
+      "chat": {
+        "id": 555555,
+        "type": "private"
+      },
+      "date": 1689336000,
+      "text": "Canon EOS R6 Mark II Mirrorless Camera Body. $2100. Shutter count 4200. 2 batteries."
+    }
+  },
+  {
+    "update_id": 100006,
+    "message": {
+      "message_id": 6,
+      "from": {
+        "id": 666666,
+        "is_bot": false,
+        "first_name": "Hana",
+        "username": "hana_fashion"
+      },
+      "chat": {
+        "id": 666666,
+        "type": "private"
+      },
+      "date": 1689339600,
+      "text": "Samsung Galaxy S24 Ultra 512GB Titanium Gray. $1050. Brand new sealed. Never opened."
+    }
+  },
+  {
+    "update_id": 100007,
+    "message": {
+      "message_id": 7,
+      "from": {
+        "id": 777777,
+        "is_bot": false,
+        "first_name": "Dina",
+        "username": "dina_laptop"
+      },
+      "chat": {
+        "id": 777777,
+        "type": "private"
+      },
+      "date": 1689343200,
+      "text": "Dell XPS 15 9530 i7-13700H 32GB RAM 1TB SSD RTX 4050. $1450. Light use. Includes original packaging."
+    }
+  },
+  {
+    "update_id": 100008,
+    "message": {
+      "message_id": 8,
+      "from": {
+        "id": 888888,
+        "is_bot": false,
+        "first_name": "Rania",
+        "username": "rania_watch"
+      },
+      "chat": {
+        "id": 888888,
+        "type": "private"
+      },
+      "date": 1689346800,
+      "text": "Apple Watch Ultra 2 49mm Titanium Orange Alpine Loop. $650. 2 weeks old. All accessories included."
+    }
+  },
+  {
+    "update_id": 100009,
+    "message": {
+      "message_id": 9,
+      "from": {
+        "id": 999999,
+        "is_bot": false,
+        "first_name": "Yasmin",
+        "username": "yasmin_pad"
+      },
+      "chat": {
+        "id": 999999,
+        "type": "private"
+      },
+      "date": 1689350400,
+      "text": "iPad Pro 12.9-inch M2 256GB Space Gray WiFi. $900. Like new condition. Apple Pencil 2 included."
+    }
+  },
+  {
+    "update_id": 100010,
+    "message": {
+      "message_id": 10,
+      "from": {
+        "id": 101010,
+        "is_bot": false,
+        "first_name": "Farah",
+        "username": "farah_console"
+      },
+      "chat": {
+        "id": 101010,
+        "type": "private"
+      },
+      "date": 1689354000,
+      "text": "PlayStation 5 Slim Disc Edition + 2 Controllers + Spider-Man 2. $480. Bought last month. Barely used."
+    }
+  },
+  {
+    "update_id": 100011,
+    "message": {
+      "message_id": 11,
+      "from": {
+        "id": 111111,
+        "is_bot": false,
+        "first_name": "Aya",
+        "username": "aya_shop"
+      },
+      "chat": {
+        "id": 111111,
+        "type": "private"
+      },
+      "date": 1689357600,
+      "text": "iPhone 15 Pro Max 256GB Natural Titanium. $940. Battery health 97%. Original box and cable. Like new."
+    }
+  },
+  {
+    "update_id": 100012,
+    "message": {
+      "message_id": 12,
+      "from": {
+        "id": 121212,
+        "is_bot": false,
+        "first_name": "Mariam",
+        "username": "mariam_audio"
+      },
+      "chat": {
+        "id": 121212,
+        "type": "private"
+      },
+      "date": 1689361200,
+      "text": "AirPods Pro 2nd Gen USB-C. $180. Used for 1 month. Perfect condition. Case and tips included."
+    }
+  },
+  {
+    "update_id": 100013,
+    "message": {
+      "message_id": 13,
+      "from": {
+        "id": 131313,
+        "is_bot": false,
+        "first_name": "Reem",
+        "username": "reem_camera"
+      },
+      "chat": {
+        "id": 131313,
+        "type": "private"
+      },
+      "date": 1689364800,
+      "text": "Sony A7 IV Mirrorless Camera Body. $1900. 8500 shutter count. Includes 3 batteries and dual charger."
+    }
+  },
+  {
+    "update_id": 100014,
+    "message": {
+      "message_id": 14,
+      "from": {
+        "id": 141414,
+        "is_bot": false,
+        "first_name": "Amira",
+        "username": "amira_phone"
+      },
+      "chat": {
+        "id": 141414,
+        "type": "private"
+      },
+      "date": 1689368400,
+      "text": "Google Pixel 8 Pro 128GB Obsidian. $650. Mint condition. No scratches. Factory unlocked."
+    }
+  },
+  {
+    "update_id": 100015,
+    "message": {
+      "message_id": 15,
+      "from": {
+        "id": 151515,
+        "is_bot": false,
+        "first_name": "Salma",
+        "username": "salma_laptop"
+      },
+      "chat": {
+        "id": 151515,
+        "type": "private"
+      },
+      "date": 1689372000,
+      "text": "Lenovo ThinkPad X1 Carbon Gen 11 i7 16GB 512GB. $1200. Business laptop. Excellent keyboard. Warranty active."
+    }
+  },
+  {
+    "update_id": 100016,
+    "message": {
+      "message_id": 16,
+      "from": {
+        "id": 161616,
+        "is_bot": false,
+        "first_name": "Nada",
+        "username": "nada_gaming"
+      },
+      "chat": {
+        "id": 161616,
+        "type": "private"
+      },
+      "date": 1689375600,
+      "text": "Xbox Series X 1TB + Game Pass Ultimate 3 months. $380. Good condition. Controller has slight stick drift."
+    }
+  },
+  {
+    "update_id": 100017,
+    "message": {
+      "message_id": 17,
+      "from": {
+        "id": 171717,
+        "is_bot": false,
+        "first_name": "Heba",
+        "username": "heba_tablet"
+      },
+      "chat": {
+        "id": 171717,
+        "type": "private"
+      },
+      "date": 1689379200,
+      "text": "Samsung Galaxy Tab S9 Ultra 512GB with S Pen. $700. Like new. Screen protector applied since day one."
+    }
+  },
+  {
+    "update_id": 100018,
+    "message": {
+      "message_id": 18,
+      "from": {
+        "id": 181818,
+        "is_bot": false,
+        "first_name": "Ola",
+        "username": "ola_audio"
+      },
+      "chat": {
+        "id": 181818,
+        "type": "private"
+      },
+      "date": 1689382800,
+      "text": "Bose QuietComfort Ultra Headphones Black. $320. 2 months old. All original packaging and cables."
+    }
+  },
+  {
+    "update_id": 100019,
+    "message": {
+      "message_id": 19,
+      "from": {
+        "id": 191919,
+        "is_bot": false,
+        "first_name": "Tasnim",
+        "username": "tasnim_drone"
+      },
+      "chat": {
+        "id": 191919,
+        "type": "private"
+      },
+      "date": 1689386400,
+      "text": "DJI Mini 4 Pro Fly More Combo. $750. Flown 5 times only. All 3 batteries included. Perfect condition."
+    }
+  },
+  {
+    "update_id": 100020,
+    "message": {
+      "message_id": 20,
+      "from": {
+        "id": 202020,
+        "is_bot": false,
+        "first_name": "Ghada",
+        "username": "ghada_monitor"
+      },
+      "chat": {
+        "id": 202020,
+        "type": "private"
+      },
+      "date": 1689390000,
+      "text": "LG UltraGear 27GP950-B 27-inch 4K 144Hz Nano IPS. $450. No dead pixels. Includes stand and cables."
+    }
+  }
+]

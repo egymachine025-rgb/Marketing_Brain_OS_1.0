@@ -1,0 +1,30 @@
+{
+  "product_id": "tg-123456791",
+  "source": {
+    "platform": "telegram",
+    "message_id": "3",
+    "update_id": "123456791"
+  },
+  "listing": {
+    "title": "Sony WH-1000XM5 Wireless Noise Canceling Headphones - Black",
+    "description": "Sony WH-1000XM5 Wireless Noise Canceling Headphones - Black. Used for 3 months. Perfect condition. $280 OBO. Comes with case and cables.",
+    "price": {
+      "currency": "USD",
+      "amount": 280.0
+    },
+    "condition": "Perfect",
+    "category": "audio",
+    "brand": "sony"
+  },
+  "seller": {
+    "id": "765432109",
+    "username": "carolw",
+    "first_name": "Carol",
+    "last_name": "Williams"
+  },
+  "metadata": {
+    "acquired_at": 1689494400,
+    "parser_version": "1.0.0"
+  },
+  "status": "active"
+}

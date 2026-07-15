@@ -1,0 +1,30 @@
+{
+  "product_id": "tg-123456789",
+  "source": {
+    "platform": "telegram",
+    "message_id": "1",
+    "update_id": "123456789"
+  },
+  "listing": {
+    "title": "iPhone 15 Pro Max 256GB Natural Titanium",
+    "description": "iPhone 15 Pro Max 256GB Natural Titanium. Condition: Like New. Price: $950. Battery health 98%. Includes original box and charger. No scratches or dents.",
+    "price": {
+      "currency": "USD",
+      "amount": 950.0
+    },
+    "condition": "Like New",
+    "category": "phone",
+    "brand": null
+  },
+  "seller": {
+    "id": "987654321",
+    "username": "alicesmith",
+    "first_name": "Alice",
+    "last_name": "Smith"
+  },
+  "metadata": {
+    "acquired_at": 1689321600,
+    "parser_version": "1.0.0"
+  },
+  "status": "active"
+}

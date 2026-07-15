@@ -1,0 +1,15 @@
+# Marketing Brain OS — API & Bot Dependencies
+# ============================================
+# Add these to your existing requirements or install separately:
+
+# Web Framework
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Production WSGI server (optional)
+gunicorn>=21.0.0
+
+# Note: telethon is already in your project

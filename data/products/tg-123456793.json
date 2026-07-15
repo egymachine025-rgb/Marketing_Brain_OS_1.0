@@ -1,0 +1,30 @@
+{
+  "product_id": "tg-123456793",
+  "source": {
+    "platform": "telegram",
+    "message_id": "5",
+    "update_id": "123456793"
+  },
+  "listing": {
+    "title": "Canon EOS R6 Mark II Mirrorless Camera Body",
+    "description": "Canon EOS R6 Mark II Mirrorless Camera Body. Shutter count 4,200. Includes 2 batteries, charger, and strap. $2100. Excellent condition, no sensor dust.",
+    "price": {
+      "currency": "USD",
+      "amount": 2100.0
+    },
+    "condition": "Excellent",
+    "category": "camera",
+    "brand": "canon"
+  },
+  "seller": {
+    "id": "543210987",
+    "username": "evedavis",
+    "first_name": "Eve",
+    "last_name": "Davis"
+  },
+  "metadata": {
+    "acquired_at": 1689667200,
+    "parser_version": "1.0.0"
+  },
+  "status": "active"
+}

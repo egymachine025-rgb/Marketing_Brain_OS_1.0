@@ -1,0 +1,62 @@
+{
+  "pipeline_name": "Marketing Brain OS \u2014 Full Integration Pipeline",
+  "timestamp": "2026-07-14T19:24:00Z",
+  "flow": [
+    "20 Telegram Messages \u2192 ParserManager",
+    "\u2193",
+    "20 Products \u2192 ProductBuilder",
+    "\u2193",
+    "DuplicateEngine (check + add_to_catalog)",
+    "\u2193",
+    "DashboardRepository (persist to data/products/)",
+    "\u2193",
+    "DashboardService (search, filter, sort, stats, export)"
+  ],
+  "verification": {
+    "telegram_messages_parsed": 20,
+    "products_built": 20,
+    "duplicates_found": 1,
+    "unique_products": 19,
+    "repository_count": 19,
+    "dashboard_products_count": 19,
+    "dashboard_duplicate_groups": 0,
+    "all_counts_match": true
+  },
+  "statistics": {
+    "total_products": 19,
+    "total_value_usd": 15810.0,
+    "average_price_usd": 832.11,
+    "min_price_usd": 180.0,
+    "max_price_usd": 2100.0,
+    "categories": {
+      "phone": 5,
+      "laptop": 3,
+      "audio": 3,
+      "gaming": 3,
+      "camera": 2,
+      "wearable": 1,
+      "tablet": 1,
+      "drone": 1
+    },
+    "conditions": {
+      "Like New": 3,
+      "Unknown": 8,
+      "Perfect": 3,
+      "Excellent": 2,
+      "Brand New": 1,
+      "Mint": 1,
+      "Good": 1
+    }
+  },
+  "duplicate_detected": {
+    "product_id": "tg-100011",
+    "matched_product_id": "tg-100001",
+    "level": "EXACT",
+    "confidence": 1.0,
+    "reason": "iPhone 15 Pro Max 256GB Natural Titanium \u2014 same seller (aya_shop), reposted"
+  },
+  "test_result": "PASSED",
+  "tests_ran": 1,
+  "tests_passed": 1,
+  "tests_failed": 0
+}
