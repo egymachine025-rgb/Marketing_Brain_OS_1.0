@@ -2,19 +2,22 @@
   "product_id": "tg-123456790",
   "source": {
     "platform": "telegram",
+    "channel": "@bobjohnson",
     "message_id": "2",
     "update_id": "123456790"
   },
+  "name": "Selling Macbook Air M2 13-inch, Midnight, 16gb Ram, 512gb Ssd. Purchased Jan 2024. Warranty Until Jan 2026. Asking $1100. Minor Wear On Corner.",
+  "category": "Other",
+  "brand": "Unknown",
   "listing": {
-    "title": "Selling MacBook Air M2 13-inch, Midnight, 16GB RAM, 512GB SSD",
+    "title": "Selling Macbook Air M2 13-inch, Midnight, 16gb Ram, 512gb Ssd. Purchased Jan 2024. Warranty Until Jan 2026. Asking $1100. Minor Wear On Corner.",
+    "category": "Other",
     "description": "Selling MacBook Air M2 13-inch, Midnight, 16GB RAM, 512GB SSD. Purchased Jan 2024. Warranty until Jan 2026. Asking $1100. Minor wear on corner.",
     "price": {
-      "currency": "USD",
-      "amount": 1100.0
+      "amount": 1100.0,
+      "currency": "USD"
     },
-    "condition": "Unknown",
-    "category": "laptop",
-    "brand": null
+    "condition": "Unknown"
   },
   "seller": {
     "id": "876543210",
@@ -23,8 +26,15 @@
     "last_name": "Johnson"
   },
   "metadata": {
-    "acquired_at": 1689408000,
-    "parser_version": "1.0.0"
+    "acquired_at": "2023-07-15T08:00:00Z",
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "Selling MacBook Air M2 13-inch, Midnight, 16GB RAM, 512GB SSD. Purchased Jan 2024. Warranty until Jan 2026. Asking $1100. Minor wear on corner"
+    ],
+    "keywords": [],
+    "offer": ""
   },
   "status": "active"
 }

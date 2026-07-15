@@ -1,0 +1,41 @@
+{
+  "product_id": "tg-12707",
+  "source": {
+    "platform": "telegram",
+    "channel": "cjfhjch4764gd36e",
+    "message_id": "12707",
+    "update_id": "12707"
+  },
+  "name": "Hyperboost Edge Running Shoes ❤️",
+  "category": "Shoes",
+  "brand": "Unknown",
+  "listing": {
+    "title": "Hyperboost Edge Running Shoes ❤️",
+    "category": "Shoes",
+    "description": "HYPERBOOST EDGE RUNNING SHOES ❤️\nSize: 41 : 45\nPrice: 2000 ❤️",
+    "price": {
+      "amount": 2000.0,
+      "currency": "USD"
+    },
+    "condition": "Unknown"
+  },
+  "seller": {
+    "id": "",
+    "username": "",
+    "first_name": "",
+    "last_name": ""
+  },
+  "metadata": {
+    "acquired_at": "2026-07-13T19:20:11+00:00",
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "HYPERBOOST EDGE RUNNING SHOES ❤️",
+      "Size: 41 : 45"
+    ],
+    "keywords": [],
+    "offer": ""
+  },
+  "status": "active"
+}

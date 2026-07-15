@@ -2,16 +2,22 @@
   "product_id": "tg-12665",
   "source": {
     "platform": "telegram",
+    "channel": "cjfhjch4764gd36e",
     "message_id": "12665",
     "update_id": "12665"
   },
+  "name": "Ecco Biom 2.2 Breathru ❤️",
+  "category": "Other",
+  "brand": "Unknown",
   "listing": {
-    "title": "Ecco Biom 2",
-    "description": "Ecco Biom 2.2 Breathru \u2764\ufe0f\nSize : 41 : 45 \nPrice: 3100",
-    "price": null,
-    "condition": "Unknown",
-    "category": "uncategorized",
-    "brand": null
+    "title": "Ecco Biom 2.2 Breathru ❤️",
+    "category": "Other",
+    "description": "Ecco Biom 2.2 Breathru ❤️\nSize : 41 : 45 \nPrice: 3100",
+    "price": {
+      "amount": 3100.0,
+      "currency": "USD"
+    },
+    "condition": "Unknown"
   },
   "seller": {
     "id": "",
@@ -21,7 +27,15 @@
   },
   "metadata": {
     "acquired_at": "2026-05-11T20:19:02+00:00",
-    "parser_version": "1.0.0"
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "Ecco Biom 2.2 Breathru ❤️",
+      "Size : 41 : 45"
+    ],
+    "keywords": [],
+    "offer": ""
   },
   "status": "active"
 }

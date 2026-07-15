@@ -2,19 +2,22 @@
   "product_id": "tg-123456792",
   "source": {
     "platform": "telegram",
+    "channel": "@davidb",
     "message_id": "4",
     "update_id": "123456792"
   },
+  "name": "Nintendo Switch Oled Model - White. Includes Zelda: Tears Of The Kingdom, Pro Controller, And 128gb Microsd. $320 Firm. Local Pickup Only.",
+  "category": "Other",
+  "brand": "Unknown",
   "listing": {
-    "title": "Nintendo Switch OLED Model - White",
+    "title": "Nintendo Switch Oled Model - White. Includes Zelda: Tears Of The Kingdom, Pro Controller, And 128gb Microsd. $320 Firm. Local Pickup Only.",
+    "category": "Other",
     "description": "Nintendo Switch OLED Model - White. Includes Zelda: Tears of the Kingdom, Pro Controller, and 128GB microSD. $320 firm. Local pickup only.",
     "price": {
-      "currency": "USD",
-      "amount": 320.0
+      "amount": 320.0,
+      "currency": "USD"
     },
-    "condition": "Unknown",
-    "category": "gaming",
-    "brand": "nintendo"
+    "condition": "Unknown"
   },
   "seller": {
     "id": "654321098",
@@ -23,8 +26,17 @@
     "last_name": "Brown"
   },
   "metadata": {
-    "acquired_at": 1689580800,
-    "parser_version": "1.0.0"
+    "acquired_at": "2023-07-17T08:00:00Z",
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "Nintendo Switch OLED Model - White. Includes Zelda: Tears of the Kingdom",
+      "Pro Controller",
+      "and 128GB microSD. $320 firm. Local pickup only"
+    ],
+    "keywords": [],
+    "offer": ""
   },
   "status": "active"
 }

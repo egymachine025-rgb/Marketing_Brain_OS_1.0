@@ -2,19 +2,22 @@
   "product_id": "tg-123456789",
   "source": {
     "platform": "telegram",
+    "channel": "@alicesmith",
     "message_id": "1",
     "update_id": "123456789"
   },
+  "name": "Iphone 15 Pro Max 256gb Natural Titanium. Condition: Like New. Price: $950. Battery Health 98%. Includes Original Box And Charger. No Scratches Or Dents.",
+  "category": "Phone",
+  "brand": "Unknown",
   "listing": {
-    "title": "iPhone 15 Pro Max 256GB Natural Titanium",
+    "title": "Iphone 15 Pro Max 256gb Natural Titanium. Condition: Like New. Price: $950. Battery Health 98%. Includes Original Box And Charger. No Scratches Or Dents.",
+    "category": "Phone",
     "description": "iPhone 15 Pro Max 256GB Natural Titanium. Condition: Like New. Price: $950. Battery health 98%. Includes original box and charger. No scratches or dents.",
     "price": {
-      "currency": "USD",
-      "amount": 950.0
+      "amount": 950.0,
+      "currency": "USD"
     },
-    "condition": "Like New",
-    "category": "phone",
-    "brand": null
+    "condition": "Unknown"
   },
   "seller": {
     "id": "987654321",
@@ -23,8 +26,15 @@
     "last_name": "Smith"
   },
   "metadata": {
-    "acquired_at": 1689321600,
-    "parser_version": "1.0.0"
+    "acquired_at": "2023-07-14T08:00:00Z",
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "iPhone 15 Pro Max 256GB Natural Titanium. Condition: Like New. Price: $950. Battery health 98%. Includes original box and charger. No scratches or dents"
+    ],
+    "keywords": [],
+    "offer": ""
   },
   "status": "active"
 }

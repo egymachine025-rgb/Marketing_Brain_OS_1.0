@@ -1,0 +1,41 @@
+{
+  "product_id": "tg-1",
+  "source": {
+    "platform": "telegram",
+    "channel": "@EgyStore005",
+    "message_id": "1",
+    "update_id": "1"
+  },
+  "name": "Nike Air Max",
+  "category": "Other",
+  "brand": "Nike",
+  "listing": {
+    "title": "Nike Air Max",
+    "category": "Other",
+    "description": "Nike Air Max\nPrice: 120 USD\nCondition: New\nFeatures: breathable mesh, lightweight",
+    "price": {
+      "amount": 120.0,
+      "currency": "USD"
+    },
+    "condition": "Unknown"
+  },
+  "seller": {
+    "id": "",
+    "username": "",
+    "first_name": "",
+    "last_name": ""
+  },
+  "metadata": {
+    "acquired_at": "2026-07-15T18:11:07.257376+00:00",
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "breathable mesh",
+      "lightweight"
+    ],
+    "keywords": [],
+    "offer": ""
+  },
+  "status": "active"
+}

@@ -1,19 +1,12 @@
 {
   "status": "success",
-  "timestamp": "2026-07-15T00:43:02.082829",
+  "timestamp": "2026-07-16T01:09:16.954446",
   "pipeline": {
-    "messages_loaded": 39,
-    "products_built": 39,
-    "unique_products": 0,
-    "duplicates_found": 39,
+    "messages_loaded": 41,
+    "products_built": 41,
+    "unique_products": 12,
+    "duplicates_found": 29,
     "duplicates": [
-      {
-        "product_id": "tg-43901",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-43901",
-        "reason": "Fingerprint hash exact match."
-      },
       {
         "product_id": "tg-43910",
         "level": "EXACT",
@@ -23,10 +16,10 @@
       },
       {
         "product_id": "tg-43925",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-43925",
-        "reason": "Fingerprint hash exact match."
+        "level": "LOW",
+        "confidence": 0.71,
+        "matched": "tg-43901",
+        "reason": "Best similarity 71.00% \u2192 LOW duplicate."
       },
       {
         "product_id": "tg-43938",
@@ -53,15 +46,15 @@
         "product_id": "tg-43978",
         "level": "EXACT",
         "confidence": 1.0,
-        "matched": "tg-43978",
+        "matched": "tg-43901",
         "reason": "Fingerprint hash exact match."
       },
       {
         "product_id": "tg-43984",
-        "level": "LOW",
-        "confidence": 0.6000000000000001,
-        "matched": "tg-43978",
-        "reason": "Best similarity 60.00% \u2192 LOW duplicate."
+        "level": "EXACT",
+        "confidence": 1.0,
+        "matched": "tg-43901",
+        "reason": "Fingerprint hash exact match."
       },
       {
         "product_id": "tg-43995",
@@ -75,13 +68,6 @@
         "level": "EXACT",
         "confidence": 1.0,
         "matched": "tg-43901",
-        "reason": "Fingerprint hash exact match."
-      },
-      {
-        "product_id": "tg-12642",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-12642",
         "reason": "Fingerprint hash exact match."
       },
       {
@@ -106,13 +92,6 @@
         "reason": "Fingerprint hash exact match."
       },
       {
-        "product_id": "tg-12665",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-12665",
-        "reason": "Fingerprint hash exact match."
-      },
-      {
         "product_id": "tg-12670",
         "level": "EXACT",
         "confidence": 1.0,
@@ -122,16 +101,16 @@
       {
         "product_id": "tg-12674",
         "level": "LOW",
-        "confidence": 0.6161538461538463,
-        "matched": "tg-12642",
-        "reason": "Best similarity 61.62% \u2192 LOW duplicate."
+        "confidence": 0.71,
+        "matched": "tg-43901",
+        "reason": "Best similarity 71.00% \u2192 LOW duplicate."
       },
       {
         "product_id": "tg-12681",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-12681",
-        "reason": "Fingerprint hash exact match."
+        "level": "LOW",
+        "confidence": 0.71,
+        "matched": "tg-43901",
+        "reason": "Best similarity 71.00% \u2192 LOW duplicate."
       },
       {
         "product_id": "tg-12682",
@@ -143,23 +122,16 @@
       {
         "product_id": "tg-12683",
         "level": "LOW",
-        "confidence": 0.6366666666666667,
-        "matched": "tg-12642",
-        "reason": "Best similarity 63.67% \u2192 LOW duplicate."
+        "confidence": 0.71,
+        "matched": "tg-12665",
+        "reason": "Best similarity 71.00% \u2192 LOW duplicate."
       },
       {
         "product_id": "tg-12684",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-12684",
-        "reason": "Fingerprint hash exact match."
-      },
-      {
-        "product_id": "tg-12689",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-12689",
-        "reason": "Fingerprint hash exact match."
+        "level": "LOW",
+        "confidence": 0.71,
+        "matched": "tg-43901",
+        "reason": "Best similarity 71.00% \u2192 LOW duplicate."
       },
       {
         "product_id": "tg-12695",
@@ -184,10 +156,10 @@
       },
       {
         "product_id": "tg-12702",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-12681",
-        "reason": "Fingerprint hash exact match."
+        "level": "LOW",
+        "confidence": 0.71,
+        "matched": "tg-43901",
+        "reason": "Best similarity 71.00% \u2192 LOW duplicate."
       },
       {
         "product_id": "tg-12703",
@@ -197,124 +169,82 @@
         "reason": "Fingerprint hash exact match."
       },
       {
-        "product_id": "tg-12707",
-        "level": "LOW",
-        "confidence": 0.6161538461538463,
-        "matched": "tg-12642",
-        "reason": "Best similarity 61.62% \u2192 LOW duplicate."
-      },
-      {
         "product_id": "tg-12711",
-        "level": "LOW",
-        "confidence": 0.6161538461538463,
-        "matched": "tg-12642",
-        "reason": "Best similarity 61.62% \u2192 LOW duplicate."
+        "level": "EXACT",
+        "confidence": 1.0,
+        "matched": "tg-12707",
+        "reason": "Fingerprint hash exact match."
       },
       {
         "product_id": "tg-12716",
-        "level": "LOW",
-        "confidence": 0.6161538461538463,
-        "matched": "tg-12642",
-        "reason": "Best similarity 61.62% \u2192 LOW duplicate."
+        "level": "EXACT",
+        "confidence": 1.0,
+        "matched": "tg-12707",
+        "reason": "Fingerprint hash exact match."
       },
       {
         "product_id": "tg-12722",
-        "level": "LOW",
-        "confidence": 0.6161538461538463,
-        "matched": "tg-12642",
-        "reason": "Best similarity 61.62% \u2192 LOW duplicate."
+        "level": "EXACT",
+        "confidence": 1.0,
+        "matched": "tg-12707",
+        "reason": "Fingerprint hash exact match."
       },
       {
         "product_id": "tg-12728",
-        "level": "LOW",
-        "confidence": 0.6021428571428572,
-        "matched": "tg-12642",
-        "reason": "Best similarity 60.21% \u2192 LOW duplicate."
+        "level": "EXACT",
+        "confidence": 1.0,
+        "matched": "tg-12707",
+        "reason": "Fingerprint hash exact match."
       },
       {
         "product_id": "tg-12733",
-        "level": "LOW",
-        "confidence": 0.6021428571428572,
-        "matched": "tg-12642",
-        "reason": "Best similarity 60.21% \u2192 LOW duplicate."
+        "level": "EXACT",
+        "confidence": 1.0,
+        "matched": "tg-12707",
+        "reason": "Fingerprint hash exact match."
       },
       {
         "product_id": "tg-12737",
-        "level": "LOW",
-        "confidence": 0.6021428571428572,
-        "matched": "tg-12642",
-        "reason": "Best similarity 60.21% \u2192 LOW duplicate."
-      },
-      {
-        "product_id": "tg-123456789",
         "level": "EXACT",
         "confidence": 1.0,
-        "matched": "tg-123456789",
-        "reason": "Fingerprint hash exact match."
-      },
-      {
-        "product_id": "tg-123456790",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-123456790",
-        "reason": "Fingerprint hash exact match."
-      },
-      {
-        "product_id": "tg-123456791",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-123456791",
-        "reason": "Fingerprint hash exact match."
-      },
-      {
-        "product_id": "tg-123456792",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-123456792",
-        "reason": "Fingerprint hash exact match."
-      },
-      {
-        "product_id": "tg-123456793",
-        "level": "EXACT",
-        "confidence": 1.0,
-        "matched": "tg-123456793",
+        "matched": "tg-12707",
         "reason": "Fingerprint hash exact match."
       }
     ]
   },
   "dashboard": {
-    "products_count": 13,
+    "products_count": 12,
     "statistics": {
-      "total_products": 13,
-      "total_value": 4750.0,
-      "average_price": 365.38,
-      "min_price": 0,
-      "max_price": 2100.0,
+      "total_products": 12,
+      "total_value": 14126.32,
+      "average_price": 1177.19,
+      "min_price": 16.32,
+      "max_price": 3100.0,
       "categories": {
-        "phone": 1,
-        "laptop": 1,
-        "audio": 1,
-        "gaming": 1,
-        "camera": 1,
-        "uncategorized": 8
+        "Other": 7,
+        "Phone": 3,
+        "Shoes": 2
+      },
+      "brands": {
+        "Nike": 1,
+        "Unknown": 9,
+        "Sony": 1,
+        "Apple": 1
       },
       "conditions": {
-        "Like New": 1,
-        "Unknown": 10,
-        "Perfect": 1,
-        "Excellent": 1
+        "Unknown": 12
       },
       "statuses": {
-        "active": 13
+        "active": 12
       }
     },
     "newest_products": [
-      "tg-43978",
-      "tg-43925",
+      "tg-2",
+      "tg-1",
+      "tg-12707",
       "tg-43901",
-      "tg-12689",
-      "tg-12684"
+      "tg-12689"
     ]
   },
-  "export_path": "E:\\Marketing_Brain_OS_1.0\\data/exports\\pipeline_export_20260715_004302.json"
+  "export_path": "E:\\Marketing_Brain_OS_1.0\\data/exports\\pipeline_export_20260716_010916.json"
 }

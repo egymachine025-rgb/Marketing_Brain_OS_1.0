@@ -15,7 +15,7 @@ Responsibilities:
 
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
 
 
@@ -85,6 +85,32 @@ class DashboardBackend:
         ]
         return " ".join(str(p) for p in parts).lower()
 
+    def _normalize_timestamp(self, raw_timestamp):
+        if isinstance(raw_timestamp, datetime):
+            if raw_timestamp.tzinfo is None:
+                return raw_timestamp.replace(tzinfo=timezone.utc)
+            return raw_timestamp
+
+        if isinstance(raw_timestamp, (int, float)):
+            try:
+                return datetime.fromtimestamp(raw_timestamp, tz=timezone.utc)
+            except (OverflowError, OSError, ValueError):
+                return datetime.min.replace(tzinfo=timezone.utc)
+
+        if isinstance(raw_timestamp, str):
+            raw_str = raw_timestamp.strip()
+            if not raw_str:
+                return datetime.min.replace(tzinfo=timezone.utc)
+            try:
+                parsed = datetime.fromisoformat(raw_str.replace("Z", "+00:00"))
+                if parsed.tzinfo is None:
+                    return parsed.replace(tzinfo=timezone.utc)
+                return parsed
+            except ValueError:
+                return datetime.min.replace(tzinfo=timezone.utc)
+
+        return datetime.min.replace(tzinfo=timezone.utc)
+
     # ------------------------------------------------------------------
     # Filter
     # ------------------------------------------------------------------
@@ -145,12 +171,13 @@ class DashboardBackend:
             if by == "price":
                 return listing.get("price", {}).get("amount", 0) or 0
             elif by == "acquired_at":
-                return p.get("metadata", {}).get("acquired_at", "")
+                return self._normalize_timestamp(p.get("metadata", {}).get("acquired_at", ""))
             elif by == "title":
                 return (p.get("name") or listing.get("title", "")).lower()
             elif by == "product_id":
                 return p.get("product_id", "")
             return ""
+
         return sorted(products, key=key, reverse=not ascending)
 
     # ------------------------------------------------------------------

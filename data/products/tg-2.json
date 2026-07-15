@@ -1,0 +1,41 @@
+{
+  "product_id": "tg-2",
+  "source": {
+    "platform": "telegram",
+    "channel": "@EgyStore005",
+    "message_id": "2",
+    "update_id": "2"
+  },
+  "name": "Apple Iphone 14 Pro",
+  "category": "Phone",
+  "brand": "Apple",
+  "listing": {
+    "title": "Apple Iphone 14 Pro",
+    "category": "Phone",
+    "description": "Apple iPhone 14 Pro\nPrice: 45000 EGP\nCondition: Like New",
+    "price": {
+      "amount": 1440.0,
+      "currency": "USD"
+    },
+    "condition": "Unknown"
+  },
+  "seller": {
+    "id": "",
+    "username": "",
+    "first_name": "",
+    "last_name": ""
+  },
+  "metadata": {
+    "acquired_at": "2026-07-15T18:11:07.257401+00:00",
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "Apple iPhone 14 Pro",
+      "Condition: Like New"
+    ],
+    "keywords": [],
+    "offer": ""
+  },
+  "status": "active"
+}

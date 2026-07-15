@@ -29,7 +29,9 @@
           mobileMenuOpen: false, 
           currentTab: 'dashboard',
           sourcesList: [],
+          intelligenceList: [],
           loadingSources: false,
+          loadingIntelligence: false,
           async fetchSources() {
               this.loadingSources = true;
               try {
@@ -39,6 +41,21 @@
                   console.error('Failed to fetch sources:', error);
               } finally {
                   this.loadingSources = false;
+              }
+          },
+          async fetchIntelligence() {
+              if (this.intelligenceList.length) {
+                  return;
+              }
+              this.loadingIntelligence = true;
+              try {
+                  let response = await fetch('/api/intelligence/products/newest?limit=5');
+                  let payload = await response.json();
+                  this.intelligenceList = payload.data?.products || [];
+              } catch (error) {
+                  console.error('Failed to fetch intelligence:', error);
+              } finally {
+                  this.loadingIntelligence = false;
               }
           }
       }"
@@ -69,6 +86,14 @@
                         class="px-4 py-2 rounded-lg text-sm font-semibold transition">
                     <i class="fa-solid fa-circle-nodes mr-1.5"></i> Sources Panel
                 </button>
+                <button @click="currentTab = 'intelligence'; fetchIntelligence()" 
+                        :class="currentTab === 'intelligence' ? 'bg-waTealLight text-white' : 'text-slate-300 hover:bg-slate-800'"
+                        class="px-4 py-2 rounded-lg text-sm font-semibold transition">
+                    <i class="fa-solid fa-lightbulb mr-1.5"></i> Intelligence
+                </button>
+                <a href="/profile" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 bg-slate-800/30 hover:bg-slate-700 hover:text-white transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-user"></i> Profile
+                </a>
             </nav>
 
             <!-- Mobile Menu Toggle -->
@@ -204,6 +229,69 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- 🟧 TAB 3: INTELLIGENCE INSIGHTS -->
+        <div x-show="currentTab === 'intelligence'" class="space-y-6" style="display: none;">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-2">Social Media Intelligence</h2>
+                <p class="text-slate-600 mb-4">View AI-driven content analysis, keyword suggestions, audience segments, and pricing psychology for your newest products.</p>
+                <div class="grid grid-cols-1 gap-4">
+                    <template x-if="loadingIntelligence">
+                        <div class="text-center py-12">
+                            <i class="fa-solid fa-circle-notch text-3xl text-waTealLight animate-spin mb-3"></i>
+                            <p class="text-sm text-slate-500">Loading intelligence insights...</p>
+                        </div>
+                    </template>
+                    <template x-if="!loadingIntelligence && intelligenceList.length === 0">
+                        <div class="text-center py-12 text-slate-500">
+                            <p class="font-semibold">No intelligence data available yet.</p>
+                            <p class="text-sm mt-2">Run the pipeline and refresh the tab to load product insights.</p>
+                        </div>
+                    </template>
+                    <template x-for="item in intelligenceList" :key="item.product_id">
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900" x-text="item.title"></h3>
+                                    <p class="text-sm text-slate-500 mt-1">Product ID: <span x-text="item.product_id"></span></p>
+                                </div>
+                                <span class="inline-flex items-center rounded-full bg-waTealLight/20 text-waTealLight px-3 py-1 text-xs font-semibold">
+                                    <span x-text="item.content_analysis.type"></span>
+                                </span>
+                            </div>
+                            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                    <h4 class="text-sm font-semibold text-slate-700">Content Tone</h4>
+                                    <p class="mt-2 text-slate-600" x-text="item.content_analysis.tone"></p>
+                                    <h4 class="text-sm font-semibold text-slate-700 mt-4">Platform</h4>
+                                    <p class="mt-2 text-slate-600" x-text="item.content_analysis.best_platform.join(', ')"></p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                    <h4 class="text-sm font-semibold text-slate-700">Predicted Engagement</h4>
+                                    <p class="mt-2 text-slate-600"><span x-text="item.content_analysis.engagement_predicted"></span></p>
+                                    <h4 class="text-sm font-semibold text-slate-700 mt-4">Conversion Rate</h4>
+                                    <p class="mt-2 text-slate-600"><span x-text="item.conversion_rate"></span></p>
+                                </div>
+                            </div>
+                            <div class="mt-4 grid gap-4 sm:grid-cols-3">
+                                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                    <h4 class="text-sm font-semibold text-slate-700">Keyword Suggestions</h4>
+                                    <p class="mt-2 text-slate-600" x-text="item.keyword_suggestions.length ? item.keyword_suggestions.map(k => k.keyword).join(', ') : 'None'"></p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                    <h4 class="text-sm font-semibold text-slate-700">Target Audiences</h4>
+                                    <p class="mt-2 text-slate-600" x-text="item.content_analysis.target_audience.join(', ')"></p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                    <h4 class="text-sm font-semibold text-slate-700">Sales Hooks</h4>
+                                    <p class="mt-2 text-slate-600" x-text="item.sales_hooks.slice(0, 2).join(' | ')"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
         </div>
 
     </main>

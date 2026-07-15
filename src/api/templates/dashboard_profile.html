@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Brain OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0B141A;
+            color: #E9EDEF;
+            min-height: 100vh;
+        }
+        .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #111B21; position: relative; }
+        .header {
+            background: #1F2C34; padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+            border-bottom: 1px solid #2A3942; position: sticky; top: 0; z-index: 100;
+        }
+        .avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 16px; color: #fff;
+        }
+        .header-info { flex: 1; }
+        .header-title { font-size: 16px; font-weight: 600; }
+        .header-status { font-size: 12px; color: #8696A0; display: flex; align-items: center; gap: 4px; }
+        .online-dot { width: 8px; height: 8px; background: #25D366; border-radius: 50%; }
+        .menu-btn { background: none; border: none; color: #8696A0; font-size: 20px; cursor: pointer; }
+
+        .profile-card {
+            background: #1F2C34; margin: 12px; border-radius: 16px; padding: 20px;
+            text-align: center; border: 1px solid #2A3942;
+        }
+        .profile-avatar {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; font-weight: 700; color: #fff;
+            margin: 0 auto 12px;
+        }
+        .profile-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .profile-status { font-size: 13px; color: #8696A0; }
+        .stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+            margin-top: 16px; padding-top: 16px; border-top: 1px solid #2A3942;
+        }
+        .stat { text-align: center; }
+        .stat-num { font-size: 20px; font-weight: 700; color: #25D366; }
+        .stat-label { font-size: 10px; color: #8696A0; text-transform: uppercase; }
+
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px; background: #1F2C34; margin-top: 8px;
+            border-bottom: 1px solid #2A3942;
+        }
+        .section-title { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .section-icon { color: #25D366; }
+        .section-count { background: #25D366; color: #000; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+
+        .source-list { background: #111B21; }
+        .source-item {
+            display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+            border-bottom: 1px solid #2A3942; cursor: pointer; transition: background 0.2s;
+        }
+        .source-item:hover { background: #2A3942; }
+        .source-avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #00A884, #128C7E);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-preview { font-size: 13px; color: #8696A0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { text-align: right; flex-shrink: 0; }
+        .source-time { font-size: 11px; color: #8696A0; }
+        .source-badge { background: #25D366; color: #000; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+
+        .tab-nav {
+            display: flex;
+            background: #1F2C34;
+            border-bottom: 1px solid #2A3942;
+            position: sticky;
+            top: 73px;
+            z-index: 99;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 16px;
+            background: none;
+            border: none;
+            color: #8696A0;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn:hover { color: #E9EDEF; background: #2A3942; }
+        .tab-btn.active { color: #25D366; border-bottom-color: #25D366; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .intelligence-card {
+            background: #1F2C34;
+            margin: 12px;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #2A3942;
+        }
+        .intelligence-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #25D366;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .intelligence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .intelligence-item {
+            background: #2A3942;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .intelligence-label {
+            font-size: 11px;
+            color: #8696A0;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .intelligence-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #E9EDEF;
+        }
+        .segment-bar {
+            height: 8px;
+            background: #2A3942;
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .segment-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            border-radius: 4px;
+        }
+        .platform-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #25D366;
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 4px;
+            margin: 2px;
+        }
+        .keyword-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #2A3942;
+            color: #E9EDEF;
+            font-size: 11px;
+            border-radius: 4px;
+            margin: 2px;
+        }
+        .keyword-high { background: #25D366; color: #000; }
+        .keyword-medium { background: #128C7E; }
+        .keyword-low { background: #8696A0; }
+
+        /* Research Tab Styles */
+        .research-section {
+            background: #1F2C34;
+            margin: 12px;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #2A3942;
+        }
+        .research-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .research-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #25D366;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .task-card {
+            background: #2A3942;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #25D366;
+        }
+        .task-card.priority-high { border-left-color: #ef4444; }
+        .task-card.priority-medium { border-left-color: #f59e0b; }
+        .task-card.priority-low { border-left-color: #8696A0; }
+        .task-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .task-tool {
+            font-size: 12px;
+            color: #8696A0;
+            margin-bottom: 8px;
+        }
+        .task-tool a {
+            color: #25D366;
+            text-decoration: none;
+        }
+        .task-tool a:hover {
+            text-decoration: underline;
+        }
+        .priority-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .priority-high { background: #ef4444; color: #fff; }
+        .priority-medium { background: #f59e0b; color: #000; }
+        .priority-low { background: #8696A0; color: #fff; }
+        .task-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .btn-complete {
+            background: #25D366;
+            border: none;
+            color: #000;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            flex: 1;
+        }
+        .btn-complete:hover { background: #128C7E; }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            background: #111B21;
+            border: 1px solid #2A3942;
+            border-radius: 8px;
+            color: #E9EDEF;
+            font-size: 13px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+        .search-bar:focus {
+            outline: none;
+            border-color: #25D366;
+        }
+        .result-card {
+            background: #2A3942;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+        .result-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .result-source {
+            font-size: 12px;
+            color: #8696A0;
+            margin-bottom: 8px;
+        }
+        .result-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+        .result-tag {
+            background: #1F2C34;
+            color: #25D366;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+        .result-date {
+            font-size: 11px;
+            color: #8696A0;
+            margin-bottom: 8px;
+        }
+        .btn-view {
+            background: #1F2C34;
+            border: 1px solid #25D366;
+            color: #25D366;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-view:hover {
+            background: #25D366;
+            color: #000;
+        }
+        .suggestion-card {
+            background: #2A3942;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #f59e0b;
+        }
+        .suggestion-reason {
+            font-size: 12px;
+            color: #E9EDEF;
+            margin-bottom: 8px;
+        }
+        .suggestion-reason strong {
+            color: #25D366;
+        }
+        .btn-create-task {
+            background: #25D366;
+            border: none;
+            color: #000;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-create-task:hover { background: #128C7E; }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #1F2C34;
+            border-radius: 12px;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #2A3942;
+        }
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #25D366;
+            margin-bottom: 16px;
+        }
+        .modal-textarea {
+            width: 100%;
+            padding: 10px;
+            background: #111B21;
+            border: 1px solid #2A3942;
+            border-radius: 8px;
+            color: #E9EDEF;
+            font-size: 13px;
+            min-height: 120px;
+            resize: vertical;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+        }
+        .modal-textarea:focus {
+            outline: none;
+            border-color: #25D366;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-cancel {
+            background: #2A3942;
+            border: none;
+            color: #E9EDEF;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+        }
+        .btn-submit {
+            background: #25D366;
+            border: none;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            flex: 1;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #8696A0;
+            font-size: 13px;
+        }
+        .empty-state i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="avatar">MB</div>
+            <div class="header-info">
+                <div class="header-title">Marketing Brain OS</div>
+                <div class="header-status">
+                    <span class="online-dot"></span>
+                    <span>Online • {{ now }}</span>
+                </div>
+            </div>
+            <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
+
+        <div class="profile-card">
+            <div class="profile-avatar">MB</div>
+            <div class="profile-name">Marketing Brain OS</div>
+            <div class="profile-status">Egyptian Market Intelligence Platform</div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-num">12</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">5</div>
+                    <div class="stat-label">Sources</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">Segments</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">24</div>
+                    <div class="stat-label">Hours</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('sources')">
+                <i class="fa-solid fa-circle-nodes"></i> Sources
+            </button>
+            <button class="tab-btn" onclick="switchTab('products')">
+                <i class="fa-solid fa-box"></i> Products
+            </button>
+            <button class="tab-btn" onclick="switchTab('intelligence')">
+                <i class="fa-solid fa-lightbulb"></i> Intelligence
+            </button>
+            <button class="tab-btn" onclick="switchTab('research')">
+                <i class="fa-solid fa-microscope"></i> Research
+            </button>
+        </div>
+
+        <div id="sources" class="tab-content active">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-circle-nodes section-icon"></i> Telegram Sources
+                </div>
+                <div class="section-count">5</div>
+            </div>
+            <div class="source-list">
+                <div class="source-item">
+                    <div class="source-avatar"><i class="fa-brands fa-telegram"></i></div>
+                    <div class="source-info">
+                        <div class="source-name">@EgyStore005</div>
+                        <div class="source-preview">Electronics & Fashion Store</div>
+                    </div>
+                    <div class="source-meta">
+                        <div class="source-time">2h ago</div>
+                        <div class="source-badge">Active</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="products" class="tab-content">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-box section-icon"></i> Products
+                </div>
+                <div class="section-count">12</div>
+            </div>
+            <div class="source-list">
+                <div class="source-item">
+                    <div class="source-avatar"><i class="fa-solid fa-shoe-prints"></i></div>
+                    <div class="source-info">
+                        <div class="source-name">Nike Air Max</div>
+                        <div class="source-preview">Sports & Footwear</div>
+                    </div>
+                    <div class="source-meta">
+                        <div class="source-time">$120</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="intelligence" class="tab-content">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-lightbulb section-icon"></i> Market Intelligence
+                </div>
+                <button onclick="loadIntelligenceData()" style="background: #25D366; border: none; color: #000; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer;">
+                    <i class="fa-solid fa-refresh"></i> Refresh
+                </button>
+            </div>
+
+            <!-- Market Segments Chart -->
+            <div class="intelligence-card">
+                <div class="intelligence-title">
+                    <i class="fa-solid fa-chart-pie"></i> Egyptian Market Segments
+                </div>
+                <div id="segments-container">
+                    <div class="intelligence-item" style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="intelligence-label">Upper Class (>50K EGP)</div>
+                                <div class="intelligence-value">New Cairo, Zamalek, Maadi</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="intelligence-value" style="color: #25D366;">5%</div>
+                            </div>
+                        </div>
+                        <div class="segment-bar"><div class="segment-fill" style="width: 5%;"></div></div>
+                    </div>
+                    <div class="intelligence-item" style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="intelligence-label">Upper Middle (25K-50K EGP)</div>
+                                <div class="intelligence-value">Nasr City, Heliopolis, 6th October</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="intelligence-value" style="color: #25D366;">15%</div>
+                            </div>
+                        </div>
+                        <div class="segment-bar"><div class="segment-fill" style="width: 15%;"></div></div>
+                    </div>
+                    <div class="intelligence-item" style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="intelligence-label">Middle Class (10K-25K EGP)</div>
+                                <div class="intelligence-value">Dokki, Mohandessin, Alexandria</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="intelligence-value" style="color: #25D366;">35%</div>
+                            </div>
+                        </div>
+                        <div class="segment-bar"><div class="segment-fill" style="width: 35%;"></div></div>
+                    </div>
+                    <div class="intelligence-item" style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="intelligence-label">Lower Middle (5K-10K EGP)</div>
+                                <div class="intelligence-value">Shobra, Imbaba, Rural Areas</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="intelligence-value" style="color: #25D366;">30%</div>
+                            </div>
+                        </div>
+                        <div class="segment-bar"><div class="segment-fill" style="width: 30%;"></div></div>
+                    </div>
+                    <div class="intelligence-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="intelligence-label">Lower Class (<5K EGP)</div>
+                                <div class="intelligence-value">Informal settlements, Rural villages</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="intelligence-value" style="color: #25D366;">15%</div>
+                            </div>
+                        </div>
+                        <div class="segment-bar"><div class="segment-fill" style="width: 15%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Recommendations -->
+            <div class="intelligence-card">
+                <div class="intelligence-title">
+                    <i class="fa-solid fa-share-nodes"></i> Platform Recommendations
+                </div>
+                <div class="intelligence-grid">
+                    <div class="intelligence-item">
+                        <div class="intelligence-label">Fashion Products</div>
+                        <div>
+                            <span class="platform-badge">Instagram</span>
+                            <span class="platform-badge">TikTok</span>
+                            <span class="platform-badge">Facebook</span>
+                        </div>
+                    </div>
+                    <div class="intelligence-item">
+                        <div class="intelligence-label">Electronics</div>
+                        <div>
+                            <span class="platform-badge">Facebook</span>
+                            <span class="platform-badge">WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="intelligence-item" style="margin-top: 12px;">
+                    <div class="intelligence-label">Platform Insights</div>
+                    <div style="font-size: 12px; color: #8696A0; margin-top: 4px;">
+                        <div>📘 Facebook: 45M users, best 12-15 PM</div>
+                        <div>📷 Instagram: 12M users, best 19-22 PM</div>
+                        <div>🎵 TikTok: 18M users, best 18-21 PM</div>
+                        <div>💬 WhatsApp: 35M users, best 10-12 PM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Strategy Tips -->
+            <div class="intelligence-card">
+                <div class="intelligence-title">
+                    <i class="fa-solid fa-lightbulb"></i> Content Strategy Tips
+                </div>
+                <div class="intelligence-grid">
+                    <div class="intelligence-item">
+                        <div class="intelligence-label">Content Types</div>
+                        <div class="intelligence-value" style="font-size: 12px;">
+                            <div>📹 Video for fashion</div>
+                            <div>🖼️ Carousel for electronics</div>
+                            <div>📱 Stories for engagement</div>
+                        </div>
+                    </div>
+                    <div class="intelligence-item">
+                        <div class="intelligence-label">Caption Styles</div>
+                        <div class="intelligence-value" style="font-size: 12px;">
+                            <div>Professional: Upper class</div>
+                            <div>Friendly: Middle class</div>
+                            <div>Casual: Lower segments</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intelligence-item" style="margin-top: 12px;">
+                    <div class="intelligence-label">Best Practices</div>
+                    <div style="font-size: 12px; color: #8696A0; margin-top: 4px;">
+                        <div>• Use 5-8 hashtags per post</div>
+                        <div>• Post during peak hours</div>
+                        <div>• Include price and delivery info</div>
+                        <div>• Use Egyptian Arabic for local appeal</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyword Suggestions with Metrics -->
+            <div class="intelligence-card">
+                <div class="intelligence-title">
+                    <i class="fa-solid fa-key"></i> Keyword Suggestions
+                </div>
+                <div class="intelligence-item">
+                    <div class="intelligence-label">High Competition (High Volume)</div>
+                    <div style="margin-top: 4px;">
+                        <span class="keyword-tag keyword-high">ملابس <small style="opacity: 0.7;">45K vol</small></span>
+                        <span class="keyword-tag keyword-high">احذية <small style="opacity: 0.7;">38K vol</small></span>
+                        <span class="keyword-tag keyword-high">ايفون <small style="opacity: 0.7;">68K vol</small></span>
+                    </div>
+                </div>
+                <div class="intelligence-item" style="margin-top: 12px;">
+                    <div class="intelligence-label">Medium Competition (Balanced)</div>
+                    <div style="margin-top: 4px;">
+                        <span class="keyword-tag keyword-medium">لونج دريس <small style="opacity: 0.7;">12K vol</small></span>
+                        <span class="keyword-tag keyword-medium">سنيكرز <small style="opacity: 0.7;">2.8K vol</small></span>
+                        <span class="keyword-tag keyword-medium">اكسسوارات <small style="opacity: 0.7;">15K vol</small></span>
+                    </div>
+                </div>
+                <div class="intelligence-item" style="margin-top: 12px;">
+                    <div class="intelligence-label">Low Competition (Easy Wins)</div>
+                    <div style="margin-top: 4px;">
+                        <span class="keyword-tag keyword-low">ستايل كاجوال <small style="opacity: 0.7;">3.5K vol</small></span>
+                        <span class="keyword-tag keyword-low">موديل 2024 <small style="opacity: 0.7;">5.6K vol</small></span>
+                        <span class="keyword-tag keyword-low">سعر خاص <small style="opacity: 0.7;">18K vol</small></span>
+                    </div>
+                </div>
+                <div class="intelligence-item" style="margin-top: 12px;">
+                    <div class="intelligence-label">CPC Estimates (EGP)</div>
+                    <div style="font-size: 12px; color: #8696A0; margin-top: 4px;">
+                        <div>High competition: 8-15 EGP</div>
+                        <div>Medium competition: 3-5 EGP</div>
+                        <div>Low competition: 1-3 EGP</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Intelligence -->
+            <div class="intelligence-card">
+                <div class="intelligence-title">
+                    <i class="fa-solid fa-box-open"></i> Product Intelligence
+                </div>
+                <div class="intelligence-item">
+                    <div class="intelligence-label">Analyze Your Products</div>
+                    <div style="margin-top: 8px;">
+                        <input type="text" id="product-id-input" placeholder="Enter Product ID (e.g., tg-1)" 
+                               style="width: 100%; padding: 8px; background: #111B21; border: 1px solid #2A3942; 
+                                      border-radius: 4px; color: #E9EDEF; font-size: 13px; box-sizing: border-box;">
+                        <button onclick="analyzeProduct()" 
+                                style="margin-top: 8px; width: 100%; padding: 8px; background: #25D366; border: none; 
+                                       color: #000; border-radius: 4px; font-size: 13px; font-weight: 700; cursor: pointer;">
+                            <i class="fa-solid fa-search"></i> Analyze Product
+                        </button>
+                    </div>
+                </div>
+                <div id="product-intelligence-result" style="margin-top: 12px; display: none;">
+                    <!-- Results will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="research" class="tab-content">
+            <!-- Pending Tasks Section -->
+            <div class="research-section">
+                <div class="research-section-header">
+                    <div class="research-section-title">
+                        <i class="fa-solid fa-list-check"></i> Pending Tasks
+                    </div>
+                    <button onclick="loadPendingTasks()" style="background: #25D366; border: none; color: #000; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer;">
+                        <i class="fa-solid fa-refresh"></i> Refresh
+                    </button>
+                </div>
+                <div id="pending-tasks-container">
+                    <div class="empty-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        Loading tasks...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Results Section -->
+            <div class="research-section">
+                <div class="research-section-header">
+                    <div class="research-section-title">
+                        <i class="fa-solid fa-database"></i> Research Results
+                    </div>
+                </div>
+                <input type="text" id="results-search" class="search-bar" placeholder="Search by tag, brand, or channel..." onkeyup="searchResults()">
+                <div id="results-container">
+                    <div class="empty-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        Loading results...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggested Research Section -->
+            <div class="research-section">
+                <div class="research-section-header">
+                    <div class="research-section-title">
+                        <i class="fa-solid fa-lightbulb"></i> Suggested Research
+                    </div>
+                    <button onclick="loadSuggestions()" style="background: #25D366; border: none; color: #000; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer;">
+                        <i class="fa-solid fa-refresh"></i> Refresh
+                    </button>
+                </div>
+                <div id="suggestions-container">
+                    <div class="empty-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        Loading suggestions...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Completion Modal -->
+        <div id="task-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-title">Complete Research Task</div>
+                <textarea id="task-result-text" class="modal-textarea" placeholder="Paste your research findings here..."></textarea>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="closeTaskModal()">Cancel</button>
+                    <button class="btn-submit" onclick="submitTaskResult()">Submit Result</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function switchTab(tabId) {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Remove active class from all tab buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Show selected tab content
+                document.getElementById(tabId).classList.add('active');
+                
+                // Add active class to clicked button
+                event.target.closest('.tab-btn').classList.add('active');
+            }
+
+            async function loadIntelligenceData() {
+                try {
+                    const response = await fetch('/api/intelligence/market-segments');
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        updateSegmentsDisplay(data.data.segments);
+                        updatePlatformInsights(data.data.platform_insights);
+                    }
+                } catch (error) {
+                    console.error('Failed to load intelligence data:', error);
+                }
+            }
+
+            function updateSegmentsDisplay(segments) {
+                const container = document.getElementById('segments-container');
+                if (!container) return;
+
+                container.innerHTML = segments.map(segment => `
+                    <div class="intelligence-item" style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="intelligence-label">${segment.segment_name} (${segment.income_range})</div>
+                                <div class="intelligence-value">${segment.areas.slice(0, 2).join(', ')}${segment.areas.length > 2 ? '...' : ''}</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="intelligence-value" style="color: #25D366;">${(segment.population_percentage * 100).toFixed(0)}%</div>
+                            </div>
+                        </div>
+                        <div class="segment-bar">
+                            <div class="segment-fill" style="width: ${segment.population_percentage * 100}%;"></div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function updatePlatformInsights(platformInsights) {
+                // Could update platform insights section if needed
+                console.log('Platform insights loaded:', platformInsights);
+            }
+
+            async function analyzeProduct() {
+                const productId = document.getElementById('product-id-input').value.trim();
+                if (!productId) {
+                    alert('Please enter a Product ID');
+                    return;
+                }
+
+                const resultDiv = document.getElementById('product-intelligence-result');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = '<div style="text-align: center; padding: 20px;"><i class="fa-solid fa-circle-notch fa-spin"></i> Analyzing...</div>';
+
+                try {
+                    const response = await fetch(`/api/intelligence/content-strategy?product_id=${productId}`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        displayProductIntelligence(data.data);
+                    } else {
+                        resultDiv.innerHTML = `<div style="color: #ef4444; padding: 12px;">Error: ${data.error}</div>`;
+                    }
+                } catch (error) {
+                    resultDiv.innerHTML = `<div style="color: #ef4444; padding: 12px;">Failed to analyze product: ${error.message}</div>`;
+                }
+            }
+
+            function displayProductIntelligence(intel) {
+                const resultDiv = document.getElementById('product-intelligence-result');
+                
+                const platforms = intel.platform_recommendations.primary.join(', ') + 
+                                  (intel.platform_recommendations.secondary.length ? ', ' + intel.platform_recommendations.secondary.join(', ') : '');
+
+                resultDiv.innerHTML = `
+                    <div class="intelligence-item" style="margin-top: 12px;">
+                        <div class="intelligence-label">Target Segment</div>
+                        <div class="intelligence-value">${intel.target_segment.replace('_', ' ').toUpperCase()}</div>
+                    </div>
+                    <div class="intelligence-item" style="margin-top: 12px;">
+                        <div class="intelligence-label">Recommended Platforms</div>
+                        <div class="intelligence-value">${platforms}</div>
+                    </div>
+                    <div class="intelligence-item" style="margin-top: 12px;">
+                        <div class="intelligence-label">Content Type</div>
+                        <div class="intelligence-value">${intel.content_type.primary} (secondary: ${intel.content_type.secondary.join(', ')})</div>
+                    </div>
+                    <div class="intelligence-item" style="margin-top: 12px;">
+                        <div class="intelligence-label">Caption Style</div>
+                        <div class="intelligence-value">${intel.caption_style.tone} - ${intel.caption_style.language}</div>
+                        <div style="font-size: 11px; color: #8696A0; margin-top: 4px;">${intel.caption_style.example}</div>
+                    </div>
+                    <div class="intelligence-item" style="margin-top: 12px;">
+                        <div class="intelligence-label">Best Posting Times</div>
+                        <div style="font-size: 12px; color: #8696A0; margin-top: 4px;">
+                            ${Object.entries(intel.best_posting_times).map(([platform, times]) => 
+                                `<div>${platform}: ${times.peak} (also ${times.secondary})</div>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <div class="intelligence-item" style="margin-top: 12px;">
+                        <div class="intelligence-label">Suggested Hashtags</div>
+                        <div style="margin-top: 4px;">
+                            ${intel.hashtags.primary.map(tag => `<span class="keyword-tag keyword-medium">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Load intelligence data when tab is opened
+            document.addEventListener('DOMContentLoaded', function() {
+                // Auto-load when intelligence tab is first opened
+                const intelligenceTab = document.querySelector('[onclick*="intelligence"]');
+                if (intelligenceTab) {
+                    intelligenceTab.addEventListener('click', function() {
+                        loadIntelligenceData();
+                    });
+                }
+
+                // Auto-load when research tab is first opened
+                const researchTab = document.querySelector('[onclick*="research"]');
+                if (researchTab) {
+                    researchTab.addEventListener('click', function() {
+                        loadPendingTasks();
+                        loadResearchResults();
+                        loadSuggestions();
+                    });
+                }
+            });
+
+            // Research Tab Functions
+            let currentTaskId = null;
+            let allResults = [];
+
+            async function loadPendingTasks() {
+                const container = document.getElementById('pending-tasks-container');
+                container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i>Loading tasks...</div>';
+
+                try {
+                    const response = await fetch('/api/research/tasks?status=pending');
+                    const data = await response.json();
+
+                    if (data.success && data.data.tasks.length > 0) {
+                        container.innerHTML = data.data.tasks.map(task => `
+                            <div class="task-card priority-${task.priority}">
+                                <div class="task-title">${task.title}</div>
+                                <div class="task-tool">
+                                    Tool: <a href="#" onclick="openToolLink('${task.suggested_tools[0]}')">${getToolName(task.suggested_tools[0])}</a>
+                                </div>
+                                <span class="priority-badge priority-${task.priority}">${task.priority}</span>
+                                <div class="task-actions">
+                                    <button class="btn-complete" onclick="openTaskModal('${task.task_id}')">
+                                        <i class="fa-solid fa-check"></i> Complete
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-check-circle"></i>No pending tasks</div>';
+                    }
+                } catch (error) {
+                    container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-exclamation-circle"></i>Failed to load tasks</div>';
+                    console.error('Failed to load pending tasks:', error);
+                }
+            }
+
+            async function loadResearchResults() {
+                const container = document.getElementById('results-container');
+                container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i>Loading results...</div>';
+
+                try {
+                    const response = await fetch('/api/research/results');
+                    const data = await response.json();
+
+                    if (data.success) {
+                        allResults = data.data.results;
+                        displayResults(allResults);
+                    }
+                } catch (error) {
+                    container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-exclamation-circle"></i>Failed to load results</div>';
+                    console.error('Failed to load research results:', error);
+                }
+            }
+
+            function displayResults(results) {
+                const container = document.getElementById('results-container');
+
+                if (results.length > 0) {
+                    container.innerHTML = results.map(result => `
+                        <div class="result-card">
+                            <div class="result-title">${result.title}</div>
+                            <div class="result-source">Source: ${getToolName(result.source)}</div>
+                            <div class="result-tags">
+                                ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                                ${result.brand ? `<span class="result-tag">${result.brand}</span>` : ''}
+                                ${result.channel ? `<span class="result-tag">${result.channel}</span>` : ''}
+                            </div>
+                            <div class="result-date">${new Date(result.created_at).toLocaleDateString()}</div>
+                            <button class="btn-view" onclick="viewResult('${result.result_id}')">
+                                <i class="fa-solid fa-eye"></i> View Details
+                            </button>
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-database"></i>No research results yet</div>';
+                }
+            }
+
+            function searchResults() {
+                const query = document.getElementById('results-search').value.toLowerCase();
+                const filtered = allResults.filter(result => {
+                    const title = result.title.toLowerCase();
+                    const tags = result.tags.map(t => t.toLowerCase()).join(' ');
+                    const brand = result.brand ? result.brand.toLowerCase() : '';
+                    const channel = result.channel ? result.channel.toLowerCase() : '';
+                    return title.includes(query) || tags.includes(query) || brand.includes(query) || channel.includes(query);
+                });
+                displayResults(filtered);
+            }
+
+            async function loadSuggestions() {
+                const container = document.getElementById('suggestions-container');
+                container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i>Loading suggestions...</div>';
+
+                try {
+                    const response = await fetch('/api/research/suggest');
+                    const data = await response.json();
+
+                    if (data.success && data.data.suggestions.length > 0) {
+                        container.innerHTML = data.data.suggestions.map(suggestion => `
+                            <div class="suggestion-card">
+                                <div class="suggestion-reason">
+                                    <strong>Why?</strong> ${suggestion.reason}
+                                </div>
+                                <button class="btn-create-task" onclick="createTaskFromSuggestion(${JSON.stringify(suggestion.suggested_task).replace(/"/g, '&quot;')})">
+                                    <i class="fa-solid fa-plus"></i> Create Task
+                                </button>
+                            </div>
+                        `).join('');
+                    } else {
+                        container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-check-circle"></i>No suggestions at this time</div>';
+                    }
+                } catch (error) {
+                    container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-exclamation-circle"></i>Failed to load suggestions</div>';
+                    console.error('Failed to load suggestions:', error);
+                }
+            }
+
+            async function createTaskFromSuggestion(taskData) {
+                try {
+                    const response = await fetch('/api/research/tasks', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(taskData)
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        alert('Task created successfully!');
+                        loadPendingTasks();
+                    } else {
+                        alert('Failed to create task: ' + data.error);
+                    }
+                } catch (error) {
+                    alert('Failed to create task: ' + error.message);
+                }
+            }
+
+            function openTaskModal(taskId) {
+                currentTaskId = taskId;
+                document.getElementById('task-modal').classList.add('active');
+                document.getElementById('task-result-text').value = '';
+            }
+
+            function closeTaskModal() {
+                document.getElementById('task-modal').classList.remove('active');
+                currentTaskId = null;
+            }
+
+            async function submitTaskResult() {
+                const resultText = document.getElementById('task-result-text').value.trim();
+                if (!resultText) {
+                    alert('Please enter your research findings');
+                    return;
+                }
+
+                try {
+                    // First, complete the task
+                    const completeResponse = await fetch(`/api/research/tasks/${currentTaskId}/complete`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ notes: resultText })
+                    });
+
+                    const completeData = await completeResponse.json();
+
+                    if (completeData.success) {
+                        // Get the task details to create a result
+                        const taskResponse = await fetch(`/api/research/tasks/${currentTaskId}`);
+                        const taskData = await taskResponse.json();
+                        const task = taskData.data;
+
+                        // Save as a research result
+                        const saveResponse = await fetch('/api/research/results', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                title: task.title,
+                                category: task.category,
+                                data: { findings: resultText, steps: task.steps },
+                                source: task.suggested_tools[0] || 'manual',
+                                tags: task.tags,
+                                task_id: currentTaskId,
+                                brand: task.brand,
+                                product_id: task.product_id,
+                                notes: 'Completed via dashboard'
+                            })
+                        });
+
+                        const saveData = await saveResponse.json();
+
+                        if (saveData.success) {
+                            alert('Task completed and result saved!');
+                            closeTaskModal();
+                            loadPendingTasks();
+                            loadResearchResults();
+                        } else {
+                            alert('Task completed but failed to save result');
+                        }
+                    } else {
+                        alert('Failed to complete task: ' + completeData.error);
+                    }
+                } catch (error) {
+                    alert('Failed to submit result: ' + error.message);
+                }
+            }
+
+            function viewResult(resultId) {
+                // For now, just show an alert. In a full implementation, this could open a detailed view modal
+                alert('View result details: ' + resultId);
+            }
+
+            function getToolName(toolId) {
+                const toolNames = {
+                    'google_trends': 'Google Trends',
+                    'ubersuggest': 'Ubersuggest',
+                    'answer_the_public': 'AnswerThePublic',
+                    'facebook_insights': 'Facebook Insights',
+                    'tiktok_creative': 'TikTok Creative Center',
+                    'facebook_ad_library': 'Facebook Ad Library',
+                    'similarweb': 'SimilarWeb',
+                    'capmas_egypt': 'Capmas Egypt',
+                    'google_consumer': 'Google Consumer Barometer'
+                };
+                return toolNames[toolId] || toolId;
+            }
+
+            function openToolLink(toolId) {
+                const toolUrls = {
+                    'google_trends': 'https://trends.google.com',
+                    'ubersuggest': 'https://neilpatel.com/ubersuggest',
+                    'answer_the_public': 'https://answerthepublic.com',
+                    'facebook_insights': 'https://www.facebook.com/business/insights/tools/audience-insights',
+                    'tiktok_creative': 'https://ads.tiktok.com/business/creativecenter',
+                    'facebook_ad_library': 'https://www.facebook.com/ads/library',
+                    'similarweb': 'https://www.similarweb.com',
+                    'capmas_egypt': 'https://www.capmas.gov.eg',
+                    'google_consumer': 'https://www.thinkwithgoogle.com/consumer-barometer'
+                };
+                const url = toolUrls[toolId];
+                if (url) {
+                    window.open(url, '_blank');
+                }
+            }
+        </script>
+    </div>
+</body>
+</html> 

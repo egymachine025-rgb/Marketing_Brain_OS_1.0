@@ -2,16 +2,22 @@
   "product_id": "tg-12689",
   "source": {
     "platform": "telegram",
+    "channel": "cjfhjch4764gd36e",
     "message_id": "12689",
     "update_id": "12689"
   },
+  "name": "Original Penguin John Slip On Sneakers Shoes ❤️",
+  "category": "Shoes",
+  "brand": "Unknown",
   "listing": {
-    "title": "Original Penguin John Slip On  Sneakers Shoes \u2764\ufe0f\nSize: 40 : ",
-    "description": "Original Penguin John Slip On  Sneakers Shoes \u2764\ufe0f\nSize: 40 : 46 \nPrice: 1000 \ud83d\udc4c\ud83d\ude01",
-    "price": null,
-    "condition": "Unknown",
-    "category": "uncategorized",
-    "brand": null
+    "title": "Original Penguin John Slip On Sneakers Shoes ❤️",
+    "category": "Shoes",
+    "description": "Original Penguin John Slip On  Sneakers Shoes ❤️\nSize: 40 : 46 \nPrice: 1000 👌😁",
+    "price": {
+      "amount": 1000.0,
+      "currency": "USD"
+    },
+    "condition": "Unknown"
   },
   "seller": {
     "id": "",
@@ -21,7 +27,15 @@
   },
   "metadata": {
     "acquired_at": "2026-05-18T14:38:21+00:00",
-    "parser_version": "1.0.0"
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "Original Penguin John Slip On  Sneakers Shoes ❤️",
+      "Size: 40 : 46"
+    ],
+    "keywords": [],
+    "offer": ""
   },
   "status": "active"
 }

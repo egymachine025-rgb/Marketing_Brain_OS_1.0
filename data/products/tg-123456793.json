@@ -2,19 +2,22 @@
   "product_id": "tg-123456793",
   "source": {
     "platform": "telegram",
+    "channel": "@evedavis",
     "message_id": "5",
     "update_id": "123456793"
   },
+  "name": "Canon Eos R6 Mark Ii Mirrorless Camera Body. Shutter Count 4,200. Includes 2 Batteries, Charger, And Strap. $2100. Excellent Condition, No Sensor Dust.",
+  "category": "Other",
+  "brand": "Unknown",
   "listing": {
-    "title": "Canon EOS R6 Mark II Mirrorless Camera Body",
+    "title": "Canon Eos R6 Mark Ii Mirrorless Camera Body. Shutter Count 4,200. Includes 2 Batteries, Charger, And Strap. $2100. Excellent Condition, No Sensor Dust.",
+    "category": "Other",
     "description": "Canon EOS R6 Mark II Mirrorless Camera Body. Shutter count 4,200. Includes 2 batteries, charger, and strap. $2100. Excellent condition, no sensor dust.",
     "price": {
-      "currency": "USD",
-      "amount": 2100.0
+      "amount": 2100.0,
+      "currency": "USD"
     },
-    "condition": "Excellent",
-    "category": "camera",
-    "brand": "canon"
+    "condition": "Unknown"
   },
   "seller": {
     "id": "543210987",
@@ -23,8 +26,19 @@
     "last_name": "Davis"
   },
   "metadata": {
-    "acquired_at": 1689667200,
-    "parser_version": "1.0.0"
+    "acquired_at": "2023-07-18T08:00:00Z",
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "Canon EOS R6 Mark II Mirrorless Camera Body. Shutter count 4",
+      "200. Includes 2 batteries",
+      "charger",
+      "and strap. $2100. Excellent condition",
+      "no sensor dust"
+    ],
+    "keywords": [],
+    "offer": ""
   },
   "status": "active"
 }

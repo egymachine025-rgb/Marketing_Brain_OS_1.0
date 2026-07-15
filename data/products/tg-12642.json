@@ -2,16 +2,22 @@
   "product_id": "tg-12642",
   "source": {
     "platform": "telegram",
+    "channel": "cjfhjch4764gd36e",
     "message_id": "12642",
     "update_id": "12642"
   },
+  "name": "**lacoste Tech Point ❤️",
+  "category": "Other",
+  "brand": "Unknown",
   "listing": {
-    "title": "**Lacoste Tech Point \u2764\ufe0f\n**Size: 41 : 45 \nPrice: 1700",
-    "description": "**Lacoste Tech Point \u2764\ufe0f\n**Size: 41 : 45 \nPrice: 1700",
-    "price": null,
-    "condition": "Unknown",
-    "category": "uncategorized",
-    "brand": null
+    "title": "**lacoste Tech Point ❤️",
+    "category": "Other",
+    "description": "**Lacoste Tech Point ❤️\n**Size: 41 : 45 \nPrice: 1700",
+    "price": {
+      "amount": 1700.0,
+      "currency": "USD"
+    },
+    "condition": "Unknown"
   },
   "seller": {
     "id": "",
@@ -21,7 +27,15 @@
   },
   "metadata": {
     "acquired_at": "2026-05-10T10:42:33+00:00",
-    "parser_version": "1.0.0"
+    "parser_version": "2.0.0-parser-manager",
+    "language": "en",
+    "colors": [],
+    "features": [
+      "**Lacoste Tech Point ❤️",
+      "**Size: 41 : 45"
+    ],
+    "keywords": [],
+    "offer": ""
   },
   "status": "active"
 }

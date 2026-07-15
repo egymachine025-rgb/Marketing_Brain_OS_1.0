@@ -10,6 +10,7 @@ import os
 import sys
 import json
 import shutil
+import warnings
 from datetime import datetime
 
 # Add project root to path
@@ -19,16 +20,55 @@ sys.path.insert(0, PROJECT_ROOT)
 from marketing_brain_os.fingerprint_engine import FingerprintEngine, compute_similarity
 from marketing_brain_os.duplicate_engine import DuplicateEngine, DuplicateResult
 from marketing_brain_os.dashboard_backend import DashboardBackend
-
-# TASK-C008: real Marketing Brain parsing stack (replaces regex classification)
-from marketing_brain_os.parser_manager import ParserManager
-from marketing_brain_os.product_builder import ProductBuilder
-from marketing_brain_os.normalizer import ProductNormalizer
+from marketing_brain_os.parser_manager import ParserManager as LegacyParserManager
+from marketing_brain_os.product_builder import ProductBuilder as LegacyProductBuilder
+from marketing_brain_os.normalizer import ProductNormalizer as LegacyProductNormalizer
+from src.parsing import ParserManager, ProductBuilder, ProductNormalizer
 
 # Stateless workers — safe to share across the whole pipeline run
 _parser_manager = ParserManager()
 _product_builder = ProductBuilder()
 _normalizer = ProductNormalizer()
+_legacy_parser_manager = LegacyParserManager()
+_legacy_product_builder = LegacyProductBuilder()
+_legacy_normalizer = LegacyProductNormalizer()
+
+
+def _normalize_channel_name(channel: str | None) -> str | None:
+    if not channel:
+        return None
+    channel_name = str(channel).strip()
+    if not channel_name:
+        return None
+    if not channel_name.startswith("@"):
+        channel_name = "@" + channel_name
+    return channel_name
+
+
+def _extract_channel_from_message(raw_msg: dict) -> str | None:
+    if not isinstance(raw_msg, dict):
+        return None
+    channel = raw_msg.get("channel")
+    if channel:
+        return _normalize_channel_name(channel)
+
+    if "message" in raw_msg:
+        chat = raw_msg.get("message", {}).get("chat", {})
+    else:
+        chat = raw_msg.get("chat", {})
+
+    if isinstance(chat, dict):
+        username = chat.get("username")
+        title = chat.get("title")
+        first_name = chat.get("first_name")
+        if username:
+            return _normalize_channel_name(username)
+        if title:
+            return _normalize_channel_name(title)
+        if first_name:
+            return _normalize_channel_name(first_name)
+
+    return None
 
 
 def load_telegram_messages(data_dir: str = "data/raw/telegram") -> list:
@@ -38,6 +78,7 @@ def load_telegram_messages(data_dir: str = "data/raw/telegram") -> list:
 
     if not os.path.exists(telegram_dir):
         print(f"[!] Telegram directory not found: {telegram_dir}")
+        os.makedirs(telegram_dir, exist_ok=True)
         return messages
 
     # Walk through channel subdirectories
@@ -47,23 +88,36 @@ def load_telegram_messages(data_dir: str = "data/raw/telegram") -> list:
             # Also check flat files (backward compatibility)
             if channel_name.endswith(".json"):
                 filepath = os.path.join(telegram_dir, channel_name)
-                with open(filepath, "r", encoding="utf-8") as f:
-                    messages.append(json.load(f))
+                try:
+                    with open(filepath, "r", encoding="utf-8") as f:
+                        msg = json.load(f)
+                        channel = _extract_channel_from_message(msg)
+                        if channel:
+                            msg["channel"] = channel
+                        messages.append(msg)
+                        print(f"      Found 1 messages in channel {channel or channel_name}")
+                except Exception as e:
+                    print(f"[!] Error reading {filepath}: {e}")
             continue
 
         # Read messages from channel subdirectory
+        channel_messages = []
+        normalized_channel = _normalize_channel_name(channel_name)
         for filename in sorted(os.listdir(channel_path)):
             if filename.endswith(".json") and not filename.startswith("_"):
                 filepath = os.path.join(channel_path, filename)
                 try:
                     with open(filepath, "r", encoding="utf-8") as f:
                         msg = json.load(f)
-                        # Add channel info if not present
-                        if "channel" not in msg:
-                            msg["channel"] = channel_name
+                        # Add channel info if missing or empty
+                        if not msg.get("channel"):
+                            msg["channel"] = normalized_channel
                         messages.append(msg)
+                        channel_messages.append(msg)
                 except Exception as e:
                     print(f"[!] Error reading {filepath}: {e}")
+
+        print(f"      Found {len(channel_messages)} messages in channel {normalized_channel or channel_name}")
 
     return messages
 
@@ -153,44 +207,63 @@ def build_product_from_message(parsed: dict) -> dict:
     text = parsed["raw_text"]
 
     # 1. ParserManager — deterministic, multi-lingual (EN/AR) text parsing
-    parse_result = _parser_manager.parse_raw_content(text)
+    try:
+        raw_product = _parser_manager.parse_message(
+            text,
+            {
+                "message_id": parsed.get("message_id", ""),
+                "channel": parsed.get("channel", ""),
+                "timestamp": _normalize_timestamp(parsed.get("timestamp")),
+            },
+        )
+        product = _product_builder.build(raw_product)
+        # Optional knowledge repository can be passed into normalizer if available.
+        normalized_product = _normalizer.normalize(product)
 
-    # 2. ProductBuilder — construct the typed Product domain model
-    product = _product_builder.build_from_parse_result(
-        parse_result=parse_result,
-        telegram_channel=parsed.get("channel"),
-        telegram_message_id=parsed.get("message_id"),
-    )
+        price_obj = normalized_product["listing"]["price"]
+        name = normalized_product["listing"]["title"]
+        category = normalized_product["listing"]["category"]
+        brand = normalized_product["listing"].get("brand", "Unknown")
+    except Exception as exc:
+        warnings.warn(
+            f"ParserManager pipeline failed: {exc}. Falling back to legacy regex-based pipeline.",
+            UserWarning,
+        )
+        parse_result = _legacy_parser_manager.parse_raw_content(text)
+        product = _legacy_product_builder.build_from_parse_result(
+            parse_result=parse_result,
+            telegram_channel=parsed.get("channel"),
+            telegram_message_id=parsed.get("message_id"),
+        )
+        normalized_product = _legacy_normalizer.normalize_product(product)
 
-    # 3. ProductNormalizer — normalize brand/category/price/colors/etc.
-    #    and recompute the product's own canonical fingerprint.
-    normalized_product = _normalizer.normalize_product(product)
-
-    price_obj = None
-    if normalized_product.price:
         price_obj = {
+            "amount": normalized_product.price,
             "currency": normalized_product.currency.value
             if hasattr(normalized_product.currency, "value")
             else str(normalized_product.currency),
-            "amount": normalized_product.price,
         }
+        name = normalized_product.name
+        category = normalized_product.category
+        brand = normalized_product.brand
 
     return {
         "product_id": f"tg-{parsed['source_id']}",
         "source": {
             "platform": "telegram",
+            "channel": parsed.get("channel", ""),
             "message_id": parsed["message_id"],
             "update_id": parsed["source_id"],
         },
         # Product Model fields — top-level, read directly by DashboardBackend.
-        "name": normalized_product.name,
-        "category": normalized_product.category,
-        "brand": normalized_product.brand,
+        "name": normalized_product["listing"]["title"],
+        "category": normalized_product["listing"]["category"],
+        "brand": normalized_product["listing"].get("brand", "Unknown"),
         # DuplicateEngine/FingerprintEngine compatibility mirror only.
         "listing": {
-            "title": normalized_product.name,
-            "category": normalized_product.category,
-            "description": normalized_product.description,
+            "title": normalized_product["listing"]["title"],
+            "category": normalized_product["listing"]["category"],
+            "description": normalized_product["listing"]["description"],
             "price": price_obj,
             # NOTE: condition is not produced by the ParserManager stack
             # (no ConditionExtractor exists) — see report "Blockers".
@@ -200,14 +273,30 @@ def build_product_from_message(parsed: dict) -> dict:
         "metadata": {
             "acquired_at": _normalize_timestamp(parsed["timestamp"]),
             "parser_version": "2.0.0-parser-manager",
-            "language": normalized_product.language,
-            "colors": normalized_product.colors,
-            "features": normalized_product.features,
-            "keywords": normalized_product.keywords,
-            "offer": normalized_product.offer,
+            "language": normalized_product["listing"].get("language", "en"),
+            "colors": normalized_product.get("colors", []),
+            "features": normalized_product.get("features", []),
+            "keywords": normalized_product.get("keywords", []),
+            "offer": normalized_product.get("offer", ""),
         },
         "status": "active",
     }
+
+
+def save_products(products: list[dict], output_dir: str) -> int:
+    os.makedirs(output_dir, exist_ok=True)
+    saved = 0
+    for product in products:
+        product_id = product.get("product_id") or f"product-{saved + 1}"
+        filename = f"{product_id}.json"
+        filepath = os.path.join(output_dir, filename)
+        try:
+            with open(filepath, "w", encoding="utf-8") as f:
+                json.dump(product, f, ensure_ascii=False, indent=2)
+            saved += 1
+        except Exception as exc:
+            print(f"[!] Failed to save product {product_id}: {exc}")
+    return saved
 
 
 def run_pipeline(
@@ -252,7 +341,7 @@ def run_pipeline(
     print(f"      Products built: {len(products)}")
 
     # Step 4: Duplicate detection
-    print("\n[4/5] Running duplicate detection...")
+    print("\n[4/6] Running duplicate detection...")
     dup_engine = DuplicateEngine(data_dir=products_full_dir)
     unique_products = []
     duplicates = []
@@ -276,8 +365,13 @@ def run_pipeline(
     for dup in duplicates:
         print(f"        - {dup['product_id']} [{dup['level']}] matches {dup['matched']}")
 
-    # Step 5: Dashboard
-    print("\n[5/5] Building dashboard...")
+    # Step 5: Save unique products
+    print("\n[5/6] Saving unique products to disk...")
+    saved_products = save_products(unique_products, products_full_dir)
+    print(f"      Saved {saved_products} products to {products_full_dir}")
+
+    # Step 6: Dashboard
+    print("\n[6/6] Building dashboard...")
     dashboard = DashboardBackend(data_dir=products_full_dir)
     newest = dashboard.newest(limit=5)
     stats = dashboard.statistics()
